@@ -1,0 +1,1 @@
+Activate your Day Off Quiz account! You have {{ expiration_days }} days!
