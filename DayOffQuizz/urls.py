@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
+from django.conf.urls.static import static
 
 from django_registration.backends.activation.views import RegistrationView
 from quiz_auth.forms import QuizRegistrationForm, QuizPasswordSetForm, QuizPasswordResetForm
@@ -28,3 +29,7 @@ urlpatterns = [
     path('accounts/', include('django_registration.backends.activation.urls')),
     # path("api/v1/", include("quiz.api.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    

@@ -24,3 +24,10 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context["num"] = randint(0, 100)
         return context
+
+# TODO: Write generic list and detail views for events, teams
+# TODO: Try to format list view of events as index view
+# TODO: Add model form inputs to events, teams
+# TODO: Write permissions to access these forms
+# TODO: Create profile view
+# TODO: Restrict access to data in profile view using permissions
