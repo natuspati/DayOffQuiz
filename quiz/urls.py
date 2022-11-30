@@ -5,4 +5,5 @@ from . import views
 app_name = 'quiz'
 urlpatterns = [
     path("", views.IndexView.as_view(), name="quiz-index"),
+    path("message", views.message),
 ]

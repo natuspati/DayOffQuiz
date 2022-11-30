@@ -4,6 +4,8 @@ import logging
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie
 from django.utils.decorators import method_decorator
+from django.contrib import messages
+from django.http.response import HttpResponse
 
 from random import randint
 
@@ -25,6 +27,15 @@ class IndexView(TemplateView):
         context["num"] = randint(0, 100)
         return context
 
+
+def message(request):
+    messages.success(request, "success")
+    messages.info(request, "info")
+    messages.warning(request, "warning")
+    return HttpResponse(status=204)
+
+# TODO: Add image to User model
+# TODO: Configure the default to use Gravatar
 # TODO: Write generic list and detail views for events, teams
 # TODO: Try to format list view of events as index view
 # TODO: Add model form inputs to events, teams

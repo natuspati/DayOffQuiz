@@ -12,8 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.contrib import messages
+
 from configurations import Configuration
 from configurations import values
+
+from datetime import timedelta
 
 import dj_database_url
 
@@ -62,6 +66,7 @@ class Dev(Configuration):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'django_auto_logout.middleware.auto_logout',
     ]
     
     ROOT_URLCONF = 'DayOffQuizz.urls'
@@ -144,6 +149,9 @@ class Dev(Configuration):
     # https://docs.djangoproject.com/en/4.1/howto/static-files/
     
     STATIC_URL = 'static/'
+    STATICFILES_DIRS = [
+        BASE_DIR / "static",
+    ]
     
     MEDIA_ROOT = BASE_DIR / "media"
     MEDIA_URL = "/media/"
@@ -223,6 +231,19 @@ class Dev(Configuration):
     
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
+    
+    # Configure Bootstrap toast colors with message levels.
+    MESSAGE_TAGS = {
+        messages.DEBUG: "bg-light",
+        messages.INFO: "text-white bg-primary",
+        messages.SUCCESS: "text-white bg-success",
+        messages.WARNING: "text-dark bg-warning",
+        messages.ERROR: "text-white bg-danger",
+    }
+    
+    # Log out framework settings
+    AUTO_LOGOUT = {'IDLE_TIME': timedelta(weeks=2),  # Auto log out in 2 weeks (Django default)
+                   'MESSAGE': 'The session has been inactive for too long. Login to continue.'}
     
     REST_FRAMEWORK = {
         'DEFAULT_AUTHENTICATION_CLASSES': [

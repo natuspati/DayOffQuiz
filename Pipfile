@@ -31,6 +31,7 @@ sqlparse = "==0.4.3"
 uritemplate = "==4.1.1"
 libgravatar = "*"
 django-versatileimagefield = "*"
+django-auto-logout = "*"
 
 [dev-packages]
 
