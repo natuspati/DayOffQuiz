@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.utils.translation import gettext_lazy as _
+from django.conf import settings
+
+from versatileimagefield.fields import VersatileImageField, PPOIField
 
 
 class QuizUserManager(UserManager):
@@ -46,3 +49,21 @@ class User(AbstractUser):
     
     def __str__(self):
         return self.email
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name="profile",
+        primary_key=True,
+    )
+    bio = models.TextField(blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    picture = VersatileImageField(
+        upload_to="profiles", ppoi_field="ppoi", null=True, blank=True
+    )
+    ppoi = PPOIField(null=True, blank=True)
+    
+    def __str__(self):
+        return "Profile for: %s %s" % (self.user.first_name, self.user.last_name)

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from quiz_auth.models import User
+from quiz_auth.models import User, UserProfile
 from django.utils.translation import gettext_lazy as _
 
 
@@ -37,3 +37,4 @@ class QuizUserAdmin(UserAdmin):
 
 
 admin.site.register(User, QuizUserAdmin)
+admin.site.register(UserProfile)

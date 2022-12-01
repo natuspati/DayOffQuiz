@@ -29,9 +29,10 @@ pytz = "==2022.6"
 pyyaml = "==6.0"
 sqlparse = "==0.4.3"
 uritemplate = "==4.1.1"
-libgravatar = "*"
 django-versatileimagefield = "*"
 django-auto-logout = "*"
+avinit = "*"
+cairosvg = "*"
 
 [dev-packages]
 

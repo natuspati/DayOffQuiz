@@ -1,0 +1,11 @@
+{% extends "_base.html" %}
+{% load quiz_extras crispy_forms_tags %}
+{% block title %}Edit Profile{% endblock %}\
+{% block content %}
+    {% row %}
+        {% col %}
+            <h4>Edit profile</h4>
+            {% crispy form %}
+        {% endcol %}
+    {% endrow %}
+{% endblock content %}

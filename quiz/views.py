@@ -34,11 +34,8 @@ def message(request):
     messages.warning(request, "warning")
     return HttpResponse(status=204)
 
-# TODO: Add image to User model
-# TODO: Configure the default to use Gravatar
+
 # TODO: Write generic list and detail views for events, teams
 # TODO: Try to format list view of events as index view
 # TODO: Add model form inputs to events, teams
 # TODO: Write permissions to access these forms
-# TODO: Create profile view
-# TODO: Restrict access to data in profile view using permissions

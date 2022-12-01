@@ -1,10 +1,11 @@
+from django.forms import ModelForm
 from django.contrib.auth.forms import SetPasswordForm, PasswordResetForm
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django_registration.forms import RegistrationForm
 
-from quiz_auth.models import User
+from quiz_auth.models import User, UserProfile
 
 
 class QuizRegistrationForm(RegistrationForm):
@@ -29,3 +30,14 @@ class QuizPasswordResetForm(PasswordResetForm):
         super(QuizPasswordResetForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit("submit", "Send email"))
+
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        exclude = ['user']
+        
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit("submit", "Save changes"))
